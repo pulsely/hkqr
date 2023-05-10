@@ -1,7 +1,7 @@
 # hkqr python
 
 __hkqr python__ is a python package for generating the QR Code data for Hong Kong Faster Payment System (FPS) which is a standard by Hong Kong Interbank Clearing Limited. 
-Detail standards is available at https://fps.hkicl.com.hk/eng/fps/merchants/qr_code.php
+Standard definitions are available at https://fps.hkicl.com.hk/eng/fps/merchants/qr_code.php
 
 The __hkqr python__ package only deals with:
 - Generating the string data of the QR Code. You are free to use any QR code libraries to generate the graphics on your chosen frontends.
