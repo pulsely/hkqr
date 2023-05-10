@@ -54,7 +54,7 @@ Modification and Distribution
 You are allowed to modify and distribute __hkqr python__ in accordance with the applicable open source licenses, provided that you include a copy of these terms and conditions with your distribution. However, you may not use the name of the developer(s) or [Your Open Source Python Package] to endorse or promote your modified version without prior written permission.
 
 Governing Law
-These terms and conditions shall be governed by and construed in accordance with the laws of Hong Kong, the United States of America and United Kingdom. Any legal action or proceeding arising out of or relating to these terms and conditions shall be exclusively brought in the courts of [Your Jurisdiction].
+These terms and conditions shall be governed by and construed in accordance with the laws of Hong Kong, the United States of America and United Kingdom. Any legal action or proceeding arising out of or relating to these terms and conditions shall be exclusively brought in the courts of Hong Kong, the United States of America or United Kingdom.
 
 Entire Agreement
 These terms and conditions constitute the entire agreement between you and the developer(s) of __hkqr python__ and supersede all prior or contemporaneous communications and proposals, whether oral or written, relating to the software.
