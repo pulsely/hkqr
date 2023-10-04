@@ -132,7 +132,7 @@ class HKQR:
                 'value': bill_number_62_value
             })
 
-        # Append 62 if there is bill number
+        # Append 62 with ID 05 if there is reference id
         if 'reference_id' in kwargs:
             reference_id_62_reference_value = self.__create_string_from_id_and_value( "05", kwargs['reference_id'] )
             results_replacement.append({

@@ -17,18 +17,35 @@ Use pip to install:
 
 ## Running hkqr in your Python program
 
-Supposed your Merchant ID is ``999999999999``,  
-and you would like to charge an amount of ``100``  
-with reference ID ``QR12345``:
+Supposed your Merchant ID is ``999999999999``, and you would like to charge an amount of ``100`` with reference ID ``QR12345``, do this:
 
 ```
 from hkqr import HKQR
 hkqr = HKQR('999999999999')
 qrcode = hkqr.create_hkqr_code( 100, reference_id="QR12345")
 ```
-Printing the value of ``code`` should show the string value ``00020101021226320012hk.com.hkicl021299999999999952040000530334454031005802HK5902NA6002HK62110507QR123456304983E``.
+Printing the value of ``qrcode`` should show the string value ``00020101021226320012hk.com.hkicl021299999999999952040000530334454031005802HK5902NA6002HK62110507QR123456304983E``.
 
 The Merchant ID can be ``account number`` assigned by your FPS provider, ``phone number`` or ``e-mail``.
+
+Now, you would like to show a ``Bill number``, instead of ``Reference ID``, try this:
+
+```
+from hkqr import HKQR
+hkqr = HKQR('999999999999')
+qrcode = hkqr.create_hkqr_code( 100, bill_number="QR12345")
+```
+However, we notice that the HSBC HK app might not support the usage of ``Reference ID`` or ``Bill number`` somehow. Our testing shows it happens with other FPS code implementations in other languages.
+
+In this case, generate a QRCode with Merchant ID is ``999999999999``, with an amount of ``100``:
+
+```
+from hkqr import HKQR
+hkqr = HKQR('999999999999')
+qrcode = hkqr.create_hkqr_code( 100 )
+```
+
+
 
 ## WARNING
 Make sure you test your code and do a very small amount of transaction for testing, verifying the transaction actually works before going live on production. 
