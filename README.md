@@ -35,6 +35,14 @@ from hkqr import HKQR
 hkqr = HKQR('999999999999')
 qrcode = hkqr.create_hkqr_code( 100, bill_number="QR12345")
 ```
+You can also pass both ``bill_number`` and ``reference_id`` together; they are combined into a single additional data field:
+
+```
+from hkqr import HKQR
+hkqr = HKQR('999999999999')
+qrcode = hkqr.create_hkqr_code( 100, bill_number="QR12345", reference_id="QR12345")
+```
+
 However, we notice that the HSBC HK app might not support the usage of ``Reference ID`` or ``Bill number`` somehow. Our testing shows it happens with other FPS code implementations in other languages.
 
 In this case, generate a QRCode with Merchant ID is ``999999999999``, with an amount of ``100``:
@@ -49,6 +57,17 @@ qrcode = hkqr.create_hkqr_code( 100 )
 
 ## WARNING
 Make sure you test your code and do a very small amount of transaction for testing, verifying the transaction actually works before going live on production. 
+
+---
+
+## Changelog
+
+### 0.2.0
+- Fixed: passing both ``bill_number`` and ``reference_id`` to ``create_hkqr_code`` previously produced two separate ``62`` tags, which is invalid and could cause the ``bill_number`` to be silently dropped by spec-compliant scanners. They are now combined into a single ``62`` field.
+- Fixed: email detection for the Merchant ID (``fps_id``) missed the (invalid) edge case of an ``@`` at position 0.
+
+### 0.1.0
+- Initial release.
 
 ---
 # Terms & Conditions

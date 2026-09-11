@@ -84,3 +84,5 @@ venv/*
 .env
 .idea/*
 dist/*
+.CLAUDE
+CLAUDE.md

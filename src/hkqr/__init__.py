@@ -79,7 +79,7 @@ class HKQR:
 
         if self.fps_id.startswith("+852"):
             fps_prefix = "03"
-        elif self.fps_id.find("@") > 0:
+        elif "@" in self.fps_id:
             fps_prefix = "04"
         else:
             fps_prefix = "02"
@@ -123,22 +123,24 @@ class HKQR:
                 # print( f"{r['id']}: {r['value']}")
                 results_replacement.append(r)
 
-        # Append 62 if there is bill number
-        if 'bill_number' in kwargs:
-            bill_number_62_value = self.__create_string_from_id_and_value( "01", kwargs['bill_number'] )
-            results_replacement.append({
-                'id' : '62',
-                'length' : ('%s' % len(bill_number_62_value)).zfill(2),
-                'value': bill_number_62_value
-            })
+        # Append a single 62 (Additional Data Field Template) containing bill
+        # number (01) and/or reference id (05) as nested sub-fields. Per spec,
+        # tag 62 must appear at most once - emitting it twice for bill_number
+        # and reference_id together produced two top-level 62 tags, which is
+        # invalid TLV and causes spec-compliant scanners to drop the first one.
+        payload_62_value = ""
 
-        # Append 62 with ID 05 if there is reference id
+        if 'bill_number' in kwargs:
+            payload_62_value += self.__create_string_from_id_and_value( "01", kwargs['bill_number'] )
+
         if 'reference_id' in kwargs:
-            reference_id_62_reference_value = self.__create_string_from_id_and_value( "05", kwargs['reference_id'] )
+            payload_62_value += self.__create_string_from_id_and_value( "05", kwargs['reference_id'] )
+
+        if payload_62_value:
             results_replacement.append({
                 'id' : '62',
-                'length' : ('%s' % len(reference_id_62_reference_value)).zfill(2),
-                'value': reference_id_62_reference_value
+                'length' : ('%s' % len(payload_62_value)).zfill(2),
+                'value': payload_62_value
             })
 
         encoded_value = ""
